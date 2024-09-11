@@ -3,45 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Input Display</title>
+    <title>Item Listing</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
             padding: 20px;
         }
-        #output {
-            margin-top: 20px;
-            padding: 10px;
+        .item-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .item {
             border: 1px solid #ccc;
+            padding: 10px;
+            width: 200px;
+        }
+        .item img {
+            width: 100%;
+            height: auto;
+        }
+        .item h2 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .item p {
+            font-size: 14px;
+            color: #555;
         }
     </style>
 </head>
 <body>
 
-    <h1>User Input Form</h1>
-    <form id="inputForm">
-        <label for="userInput">Enter something:</label><br>
-        <input type="text" id="userInput" placeholder="Type something...">
-        <button type="submit">Submit</button>
-    </form>
-
-    <div id="output"></div>
+    <h1>Browse Items</h1>
+    
+    <div class="item-list" id="item-list">
+        <!-- Items will be injected here by JavaScript -->
+    </div>
 
     <script>
-        // Handle form submission
-        document.getElementById('inputForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent form from refreshing the page
+        // Sample item data
+        const items = [
+            { 
+                id: 1, 
+                name: "Item 1", 
+                description: "This is a description of Item 1.", 
+                image: "https://via.placeholder.com/200", 
+                price: 100 
+            },
+            { 
+                id: 2, 
+                name: "Item 2", 
+                description: "This is a description of Item 2.", 
+                image: "https://via.placeholder.com/200", 
+                price: 150 
+            },
+            { 
+                id: 3, 
+                name: "Item 3", 
+                description: "This is a description of Item 3.", 
+                image: "https://via.placeholder.com/200", 
+                price: 200 
+            }
+        ];
 
-            // Get the value from the input field
-            const userInput = document.getElementById('userInput').value;
+        // Function to display items
+        function displayItems() {
+            const itemList = document.getElementById('item-list');
+            items.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.classList.add('item');
+                itemDiv.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <h2>${item.name}</h2>
+                    <p>${item.description}</p>
+                    <p><strong>Price:</strong> $${item.price}</p>
+                `;
+                itemList.appendChild(itemDiv);
+            });
+        }
 
-            // Display the input value in the 'output' div
-            document.getElementById('output').textContent = `You entered: ${userInput}`;
-
-            // Clear the input field after submission
-            document.getElementById('userInput').value = '';
-        });
+        // Call the function to display items when the page loads
+        window.onload = displayItems;
     </script>
 
 </body>
