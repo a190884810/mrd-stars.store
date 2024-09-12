@@ -51,7 +51,10 @@
     <script>
         // Fetch items from the backend
         async function fetchItems() {
-            const response = await fetch('http://localhost:3000/api/goods');
+            const API_URL = process.env.NODE_ENV === 'production'
+                ? 'https://mrd-star-f803babdf9bf.herokuapp.com/api/goods'
+                : 'http://localhost:3000/api/goods';
+            const response = await fetch(API_URL);
             // Display items
             const itemList = document.getElementById('item-list');
             items.forEach(item => {
