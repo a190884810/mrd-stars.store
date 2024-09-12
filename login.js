@@ -30,7 +30,7 @@ loginForm.addEventListener('submit', async (event) => {
     }
 });
 
-// Check if the admin is authenticated
+// Check if the admin is authenticated (only on the admin page)
 function checkAuth() {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -39,8 +39,10 @@ function checkAuth() {
     }
 }
 
-// Call checkAuth when the page loads to protect the admin page
-window.onload = () => {
-    checkAuth();
-    fetchProducts();
-};
+// Check if we are on the admin page and protect it
+if (window.location.pathname === '/admin') {
+    window.onload = () => {
+        checkAuth();
+        fetchProducts(); // Load products only on the admin page
+    };
+}
