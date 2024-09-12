@@ -53,6 +53,8 @@
         async function fetchItems() {
             const API_URL = 'https://mrd-star-f803babdf9bf.herokuapp.com/api/goods';
             const response = await fetch(API_URL);
+            items = response.json()
+            
             // Display items
             const itemList = document.getElementById('item-list');
             items.forEach(item => {
