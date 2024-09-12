@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,66 +10,49 @@
             font-family: Arial, sans-serif;
             padding: 20px;
         }
+
         .item-list {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
         }
+
         .item {
             border: 1px solid #ccc;
             padding: 10px;
             width: 200px;
         }
+
         .item img {
             width: 100%;
             height: auto;
         }
+
         .item h2 {
             font-size: 18px;
             margin: 10px 0;
         }
+
         .item p {
             font-size: 14px;
             color: #555;
         }
     </style>
 </head>
+
 <body>
 
     <h1>Browse Items</h1>
-    
+
     <div class="item-list" id="item-list">
         <!-- Items will be injected here by JavaScript -->
     </div>
 
     <script>
-        // Sample item data
-        const items = [
-            { 
-                id: 1, 
-                name: "Item 1", 
-                description: "This is a description of Item 1.", 
-                image: "https://via.placeholder.com/200", 
-                price: 100 
-            },
-            { 
-                id: 2, 
-                name: "Item 2", 
-                description: "This is a description of Item 2.", 
-                image: "https://via.placeholder.com/200", 
-                price: 150 
-            },
-            { 
-                id: 3, 
-                name: "Item 3", 
-                description: "This is a description of Item 3.", 
-                image: "https://via.placeholder.com/200", 
-                price: 200 
-            }
-        ];
-
-        // Function to display items
-        function displayItems() {
+        // Fetch items from the backend
+        async function fetchItems() {
+            const response = await fetch('http://localhost:3000/api/goods');
+            // Display items
             const itemList = document.getElementById('item-list');
             items.forEach(item => {
                 const itemDiv = document.createElement('div');
@@ -83,9 +67,10 @@
             });
         }
 
-        // Call the function to display items when the page loads
-        window.onload = displayItems;
+        // Call the function to fetch and display items when the page loads
+        window.onload = fetchItems;
     </script>
 
 </body>
+
 </html>
