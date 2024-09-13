@@ -3,7 +3,7 @@ let editing = false; // To track whether we're editing a product
 // Fetch and display products from the backend
 async function fetchProducts() {
     try {
-        const response = await fetch('https://mrd-star-f803babdf9bf.herokuapp.com/api/listings');
+        const response = await fetch('https://mrd-star-f803babdf9bf.herokuapp.com/api/products');
         const products = await response.json();
 
         const productList = document.getElementById('product-list');
@@ -43,7 +43,7 @@ addForm.addEventListener('submit', async (event) => {
     }
 
     try {
-        const response = await fetch('https://mrd-star-f803babdf9bf.herokuapp.com/api/listings', {
+        const response = await fetch('https://mrd-star-f803babdf9bf.herokuapp.com/api/products', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ async function deleteProduct(productId) {
     }
 
     try {
-        const response = await fetch(`https://mrd-star-f803babdf9bf.herokuapp.com/api/listings/${productId}`, {
+        const response = await fetch(`https://mrd-star-f803babdf9bf.herokuapp.com/api/products/${productId}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -130,7 +130,7 @@ editForm.addEventListener('submit', async (event) => {
     }
 
     try {
-        const response = await fetch(`https://mrd-star-f803babdf9bf.herokuapp.com/api/listings/${productId}`, {
+        const response = await fetch(`https://mrd-star-f803babdf9bf.herokuapp.com/api/products/${productId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

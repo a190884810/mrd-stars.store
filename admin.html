@@ -1,47 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin - Manage Products</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Manage Products</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  <h1>Admin - Manage Products</h1>
+    <h1>Admin - Manage Products</h1>
 
-  <!-- Admin Form for Adding Products -->
-  <h2>Add New Product</h2>
-  <form id="add-product-form">
-    <input type="text" id="add-name" placeholder="Product Name" required><br>
-    <textarea id="add-description" placeholder="Product Description" required></textarea><br>
-    <input type="number" id="add-price" placeholder="Product Price" step="0.01" required><br>
-    <button type="submit">Add Product</button>
-  </form>
+    <!-- Admin Form for Adding Products -->
+    <h2>Add New Product</h2>
+    <form id="add-product-form">
+        <input type="text" id="add-name" placeholder="Product Name" required><br>
+        <textarea id="add-description" placeholder="Product Description" required></textarea><br>
+        <input type="number" id="add-price" placeholder="Product Price" step="0.01" required><br>
+        <label for="product-image">Upload Image</label>
+        <input type="file" id="product-image" name="image" accept="image/*"><br>
+        <button type="submit">Add Product</button>
+    </form>
 
-  <h2>Current Products</h2>
-  <div id="product-list">
-    <!-- Product cards will be dynamically rendered here -->
-  </div>
-
-  <!-- Modal for Editing Products -->
-  <div id="edit-modal" class="modal">
-    <div class="modal-content">
-      <span class="close" id="close-modal">&times;</span>
-      <h2>Edit Product</h2>
-      <form id="edit-product-form">
-        <input type="text" id="edit-name" placeholder="Product Name" required><br>
-        <textarea id="edit-description" placeholder="Product Description" required></textarea><br>
-        <input type="number" id="edit-price" placeholder="Product Price" step="0.01" required><br>
-        <input type="hidden" id="edit-product-id"><!-- Hidden field for product ID -->
-        <button type="submit">Update Product</button>
-      </form>
+    <h2>Current Products</h2>
+    <div id="product-list">
+        <!-- Product cards will be dynamically rendered here -->
     </div>
-  </div>
 
-  <footer>
-    <p>© 2024 Tiancheng Store. All rights reserved.</p>
-  </footer>
+    <!-- Modal for Editing Products -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-modal">&times;</span>
+            <h2>Edit Product</h2>
+            <form id="edit-product-form">
+                <input type="text" id="edit-name" placeholder="Product Name" required><br>
+                <textarea id="edit-description" placeholder="Product Description" required></textarea><br>
+                <input type="number" id="edit-price" placeholder="Product Price" step="0.01" required><br>
+                <label for="edit-image">Upload/Replace Image</label>
+                <input type="file" id="edit-image" name="image" accept="image/*"><br>
+                <input type="hidden" id="edit-product-id"><!-- Hidden field for product ID -->
+                <button type="submit">Update Product</button>
 
-  <script defer src="admin.js"></script>
+                <!-- Button to Remove Image -->
+                <button type="button" id="remove-image" class="btn delete-btn">Remove Image</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Tiancheng Store. All rights reserved.</p>
+    </footer>
+
+    <script defer src="admin.js"></script>
 </body>
+
 </html>
