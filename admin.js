@@ -138,6 +138,7 @@ editForm.addEventListener('submit', async (event) => {
     const name = document.getElementById('edit-name').value;
     const description = document.getElementById('edit-description').value;
     const price = document.getElementById('edit-price').value;
+    const imageFile = document.getElementById('edit-product-image').files[0];
 
     const token = localStorage.getItem('token');
     if (!token) {
@@ -145,14 +146,21 @@ editForm.addEventListener('submit', async (event) => {
         return;
     }
 
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('description', description);
+    formData.append('price', price);
+    if (imageFile) {
+        formData.append('image', imageFile);
+    }
+
     try {
         const response = await fetch(`https://mrd-star-f803babdf9bf.herokuapp.com/api/products/${productId}`, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({ name, description, price })
+            body: formData
         });
 
         if (response.ok) {

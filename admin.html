@@ -33,16 +33,13 @@
             <span class="close" id="close-modal">&times;</span>
             <h2>Edit Product</h2>
             <form id="edit-product-form">
+                <input type="hidden" id="edit-product-id">
                 <input type="text" id="edit-name" placeholder="Product Name" required><br>
                 <textarea id="edit-description" placeholder="Product Description" required></textarea><br>
                 <input type="number" id="edit-price" placeholder="Product Price" step="0.01" required><br>
-                <label for="edit-image">Upload/Replace Image</label>
-                <input type="file" id="edit-image" name="image" accept="image/*"><br>
-                <input type="hidden" id="edit-product-id"><!-- Hidden field for product ID -->
+                <label for="edit-product-image">Replace Image (Optional)</label>
+                <input type="file" id="edit-product-image" name="image" accept="image/*"><br>
                 <button type="submit">Update Product</button>
-
-                <!-- Button to Remove Image -->
-                <button type="button" id="remove-image" class="btn delete-btn">Remove Image</button>
             </form>
         </div>
     </div>
