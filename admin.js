@@ -12,13 +12,20 @@ async function fetchProducts() {
         products.forEach(product => {
             const productCard = document.createElement('div');
             productCard.classList.add('product-card');
+
+            // Create a URL-safe placeholder image if the product image is not available
+            const imageUrl = product.image || 'placeholder.jpg';
+
             productCard.innerHTML = `
-        <h2>${product.name}</h2>
-        <p>${product.description}</p>
-        <p class="price">$${product.price}</p>
-        <button onclick="openEditModal(${product.id}, '${product.name}', '${product.description}', ${product.price})">Edit</button>
-        <button onclick="confirmDelete(${product.id})" class="delete-btn">Delete</button>
-      `;
+                <div class="product-image-container">
+                    <img src="${imageUrl}" alt="${product.name}" class="product-image">
+                </div>
+                <h2>${product.name}</h2>
+                <p>${product.description}</p>
+                <p class="price">$${product.price}</p>
+                <button onclick="openEditModal(${product.id}, '${product.name}', '${product.description}', ${product.price})">Edit</button>
+                <button onclick="confirmDelete(${product.id})" class="delete-btn">Delete</button>
+            `;
             productList.appendChild(productCard);
         });
     } catch (err) {
