@@ -1,4 +1,3 @@
-// Fetch and display products from the backend
 async function fetchProducts() {
     try {
         const response = await fetch('https://mrd-star-f803babdf9bf.herokuapp.com/api/products');
@@ -25,5 +24,4 @@ async function fetchProducts() {
     }
 }
 
-// Call fetchProducts when the page loads
 window.onload = fetchProducts;
