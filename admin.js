@@ -35,6 +35,7 @@ addForm.addEventListener('submit', async (event) => {
     const name = document.getElementById('add-name').value;
     const description = document.getElementById('add-description').value;
     const price = document.getElementById('add-price').value;
+    const imageFile = document.getElementById('product-image').files[0];
 
     const token = localStorage.getItem('token');
     if (!token) {
@@ -42,14 +43,22 @@ addForm.addEventListener('submit', async (event) => {
         return;
     }
 
+    // Create FormData object to send form data and file
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('description', description);
+    formData.append('price', price);
+    if (imageFile) {
+        formData.append('image', imageFile); // Append the image file
+    }
+
     try {
         const response = await fetch('https://mrd-star-f803babdf9bf.herokuapp.com/api/products', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({ name, description, price })
+            body: formData
         });
 
         if (response.ok) {
